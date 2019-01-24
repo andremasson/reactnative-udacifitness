@@ -9,7 +9,8 @@ import TextButton from './TextButton'
 import { submitEntry, removeEntry } from '../utils/api'
 import { connect } from 'react-redux'
 import { addEntry } from '../actions'
-import { purple, white } from '../utils/colors';
+import { purple, white } from '../utils/colors'
+import { NavigationAction } from 'react-navigation'
 
 const styles = StyleSheet.create({
   container: {
@@ -98,6 +99,9 @@ class AddEntry extends Component {
       [metric]: value
     })
   }
+  toHome = () => {
+    this.props.navigation.dispatch(NavigationAction.back({key: 'AddEntry'}))
+  }
   reset = () => {
     const key = timeToString()
 
@@ -105,7 +109,7 @@ class AddEntry extends Component {
       [key]: getDailyReminderValue()
     }))
 
-    // Route to Home
+    this.toHome()
 
     removeEntry(key)
   }
@@ -125,7 +129,7 @@ class AddEntry extends Component {
       eat: 0
     }))
 
-    // Navigate to home
+    this.toHome()
 
     submitEntry({ key, entry })
 
