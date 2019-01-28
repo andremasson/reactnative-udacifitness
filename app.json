@@ -3,7 +3,11 @@
     "name": "UdaciFitness",
     "slug": "UdaciFitness",
     "privacy": "public",
+    "description": "The best triathlon training app in the world.",
     "sdkVersion": "32.0.0",
+    "notification": {
+      "icon": "./assets/icon.png"
+    },
     "platforms": [
       "ios",
       "android"
@@ -23,7 +27,11 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.tempero"
+    },
+    "android": {
+     "package": "com.tempero"
     }
   }
 }

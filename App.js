@@ -15,6 +15,8 @@ import {
 } from 'react-navigation'
 import { Constants } from 'expo'
 import EntryDetail from './components/EntryDetail'
+import Live from './components/Live'
+import { setLocalNotification } from './utils/helpers'
 
 function UdaciStatusBar ({ backgroundColor, ...props }) {
   return (
@@ -37,6 +39,13 @@ const routeConfigs = {
     navigationOptions: {
       tabBarLabel: 'Add Entry',
       tabBarIcon: ({ tintColor }) => <FontAwesome name='plus-square' size={30} color={tintColor} />
+    }
+  },
+  Live: {
+    screen: Live,
+    navigationOptions: {
+      tabBarLabel: 'Live',
+      tabBarIcon: ({ tintColor }) => <FontAwesome name='ios-speedometer' size={30} color={tintColor} />
     }
   }
 }
@@ -86,6 +95,9 @@ const MainNavigator = createStackNavigator({
 const AppContainer = createAppContainer(MainNavigator)
 
 export default class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification()
+  }
   render() {
     return (
       <Provider store={createStore(reducer)}>
